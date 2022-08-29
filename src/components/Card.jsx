@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const Item = styled.div`
   width: 100%;
@@ -26,7 +27,9 @@ const ContenidoItem = styled.div`
 `;
 
 const Card = ({ dataPaises }) => {
-  const item = dataPaises.map((pais, i) => {
+  const [data, setData] = useState(dataPaises);
+
+  const item = data.map((pais, i) => {
     return (
       <Item key={i}>
         <img src={pais.flags.png} alt="" />
