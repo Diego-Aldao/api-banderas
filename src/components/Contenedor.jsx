@@ -13,15 +13,10 @@ const Contenido = styled.section`
 const Contenedor = () => {
   let [dataPaises, setDataPaises] = useState([]);
   let [isLoading, setIsLoading] = useState(false);
-  const [region, setRegion] = useState("");
 
   useEffect(() => {
     fetchData();
   }, []);
-
-  useEffect(() => {
-    fetchRegiones();
-  }, [region]);
 
   const fetchData = () => {
     setIsLoading(true);
@@ -30,33 +25,13 @@ const Contenedor = () => {
       .then((data) => {
         setDataPaises(data.slice(0, 20));
         setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsLoading(false);
       });
-  };
-
-  const fetchRegiones = () => {
-    setIsLoading(true);
-    fetch(`https://restcountries.com/v3.1/region/${region}`)
-      .then((response) => response.json())
-      .then((region) => {
-        setDataPaises(region.slice(0, 20));
-        console.log(dataPaises);
-        setIsLoading(false);
-      });
-  };
-
-  const obtenerValue = (e) => {
-    const region = e.target.value;
-    setRegion(region);
   };
 
   return (
     <Contenido>
-      <Searchbar />
-      <Filter obtenerValue={obtenerValue} />
+      <Searchbar setIsLoading={setIsLoading} setDataPaises={setDataPaises} />
+      <Filter setIsLoading={setIsLoading} setDataPaises={setDataPaises} />
       {isLoading ? <></> : <Card dataPaises={dataPaises}></Card>}
     </Contenido>
   );

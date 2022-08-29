@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useState } from "react";
 
 const InputBuscar = styled.input`
   width: 100%;
@@ -10,8 +11,36 @@ const InputBuscar = styled.input`
   outline-color: gray;
 `;
 
-const Searchbar = () => {
-  return <InputBuscar placeholder="buscar un pais"></InputBuscar>;
+const Searchbar = ({ setDataPaises, setIsLoading }) => {
+  let valor = "";
+
+  const fetchPais = (nombre) => {
+    setIsLoading(true);
+    fetch(`https://restcountries.com/v3.1/name/${nombre}`)
+      .then((response) => response.json())
+      .then((nombre) => {
+        console.log(nombre);
+        setDataPaises(nombre);
+        setIsLoading(false);
+      });
+  };
+
+  const handleChange = (e) => {
+    valor = e.target.value;
+  };
+  const handleClick = () => {
+    fetchPais(valor);
+  };
+
+  return (
+    <>
+      <InputBuscar
+        placeholder="buscar un pais"
+        onChange={handleChange}
+      ></InputBuscar>
+      <button onClick={handleClick}>buscar pais</button>
+    </>
+  );
 };
 
 export default Searchbar;
