@@ -25,8 +25,22 @@ const ContenidoItem = styled.div`
   }
 `;
 
-const Card = () => {
-  return <></>;
+const Card = ({ dataPaises }) => {
+  const item = dataPaises.map((pais, i) => {
+    return (
+      <Item key={i}>
+        <img src={pais.flags.png} alt="" />
+        <ContenidoItem>
+          <h1>{pais.name.common}</h1>
+          <p>poblacion:{pais.population}</p>
+          <p>region:{pais.region}</p>
+          <p>capital:{pais.capital[0]}</p>
+        </ContenidoItem>
+      </Item>
+    );
+  });
+
+  return item;
 };
 
 export default Card;
