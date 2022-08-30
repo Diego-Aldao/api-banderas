@@ -48,24 +48,24 @@ const InputBuscar = styled.input`
 `;
 
 const Searchbar = ({ setDataPaises, setIsLoading, darkMode }) => {
-  let valor = "";
+  let [paisBuscado, setPaisBuscado] = useState("");
 
   const fetchPais = (nombre) => {
     setIsLoading(true);
     fetch(`https://restcountries.com/v3.1/name/${nombre}`)
       .then((response) => response.json())
       .then((nombre) => {
-        console.log(nombre);
         setDataPaises(nombre);
         setIsLoading(false);
-      });
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {
-    valor = e.target.value;
+    setPaisBuscado(e.target.value);
   };
   const handleClick = () => {
-    fetchPais(valor);
+    fetchPais(paisBuscado);
   };
 
   return (
