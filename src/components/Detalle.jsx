@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
+
 const Contenedor = styled.section`
   width: 100%;
   min-height: 100vh;
