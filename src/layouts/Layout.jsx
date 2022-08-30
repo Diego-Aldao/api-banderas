@@ -2,10 +2,10 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, setDarkMode, darkMode }) => {
   return (
     <>
-      <Navbar />
+      <Navbar setDarkMode={setDarkMode} darkMode={darkMode} />
       {children}
     </>
   );

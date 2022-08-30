@@ -7,22 +7,23 @@ import { useState } from "react";
 
 function App() {
   const [pais, setPais] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
   return (
     <>
       <Routes>
         <Route
           path="/"
           element={
-            <Layout>
-              <Contenedor setPais={setPais} />
+            <Layout darkMode={darkMode} setDarkMode={setDarkMode}>
+              <Contenedor darkMode={darkMode} setPais={setPais} />
             </Layout>
           }
         />
         <Route
           path="/detalle"
           element={
-            <Layout>
-              <Detalle pais={pais} />
+            <Layout darkMode={darkMode} setDarkMode={setDarkMode}>
+              <Detalle darkMode={darkMode} pais={pais} />
             </Layout>
           }
         />

@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 const Contenedor = styled.section`
   width: 100%;
   padding: 30px 20px;
+  background: ${(props) =>
+    props.darkMode
+      ? "var(--color-principal-dark)"
+      : "var(--color-principal-light)"};
+  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
 `;
 
 const Card = styled.div`
@@ -42,7 +47,7 @@ const ItemFrontera = styled.p`
   flex: 1, 1, 3333%;
 `;
 
-const Detalle = ({ pais }) => {
+const Detalle = ({ pais, darkMode }) => {
   let [paisActual, setPaisActual] = useState([]);
   useEffect(() => {
     fetchPais(pais);
@@ -97,7 +102,7 @@ const Detalle = ({ pais }) => {
   });
 
   return (
-    <Contenedor>
+    <Contenedor darkMode={darkMode}>
       <Link to={"/"}>atras</Link>
       {item}
     </Contenedor>

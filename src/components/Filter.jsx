@@ -7,9 +7,14 @@ const Selector = styled.select`
   text-transform: capitalize;
   outline-color: lightgray;
   margin-bottom: 50px;
+  background: ${(props) =>
+    props.darkMode
+      ? "var(--color-secundario-dark)"
+      : "var(--color-principal-light)"};
+  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
 `;
 
-const Filter = ({ setDataPaises, setIsLoading }) => {
+const Filter = ({ setDataPaises, setIsLoading, darkMode }) => {
   const fetchRegiones = (region) => {
     setIsLoading(true);
     fetch(`https://restcountries.com/v3.1/region/${region}`)
@@ -25,7 +30,7 @@ const Filter = ({ setDataPaises, setIsLoading }) => {
   };
 
   return (
-    <Selector onChange={obtenerValue}>
+    <Selector onChange={obtenerValue} darkMode={darkMode}>
       <option value=""></option>
       <option value="americas">america</option>
       <option value="europe">europa</option>

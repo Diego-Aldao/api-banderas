@@ -8,9 +8,14 @@ import Card from "./Card";
 const Contenido = styled.section`
   width: 100%;
   padding: 30px 20px;
+  background: ${(props) =>
+    props.darkMode
+      ? "var(--color-principal-dark)"
+      : "var(--color-principal-light)"};
+  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
 `;
 
-const Contenedor = ({ setPais }) => {
+const Contenedor = ({ setPais, darkMode }) => {
   let [dataPaises, setDataPaises] = useState([]);
   let [isLoading, setIsLoading] = useState(false);
 
@@ -29,13 +34,25 @@ const Contenedor = ({ setPais }) => {
   };
 
   return (
-    <Contenido>
-      <Searchbar setIsLoading={setIsLoading} setDataPaises={setDataPaises} />
-      <Filter setIsLoading={setIsLoading} setDataPaises={setDataPaises} />
+    <Contenido darkMode={darkMode}>
+      <Searchbar
+        setIsLoading={setIsLoading}
+        setDataPaises={setDataPaises}
+        darkMode={darkMode}
+      />
+      <Filter
+        setIsLoading={setIsLoading}
+        setDataPaises={setDataPaises}
+        darkMode={darkMode}
+      />
       {isLoading ? (
         <></>
       ) : (
-        <Card dataPaises={dataPaises} setPais={setPais}></Card>
+        <Card
+          dataPaises={dataPaises}
+          setPais={setPais}
+          darkMode={darkMode}
+        ></Card>
       )}
     </Contenido>
   );

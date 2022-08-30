@@ -2,6 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const Navegacion = styled.div`
+  background: ${(props) =>
+    props.darkMode
+      ? "var(--color-secundario-dark)"
+      : "var(--color-principal-light)"};
+  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
   width: 100%;
   height: 50px;
   display: flex;
@@ -18,11 +23,17 @@ const Navegacion = styled.div`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({ darkMode, setDarkMode }) => {
   return (
-    <Navegacion>
+    <Navegacion darkMode={darkMode}>
       <span>donde en el mundo?</span>
-      <span>i modo oscuro</span>
+      <span
+        onClick={() => {
+          setDarkMode(!darkMode);
+        }}
+      >
+        i modo oscuro
+      </span>
     </Navegacion>
   );
 };

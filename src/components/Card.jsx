@@ -11,6 +11,11 @@ const Item = styled.div`
     width: 100%;
     height: 150px;
   }
+  background: ${(props) =>
+    props.darkMode
+      ? "var(--color-secundario-dark)"
+      : "var(--color-principal-light)"};
+  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
 `;
 const ContenidoItem = styled.div`
   width: 100%;
@@ -26,7 +31,7 @@ const ContenidoItem = styled.div`
   }
 `;
 
-const Card = ({ dataPaises, setPais }) => {
+const Card = ({ dataPaises, setPais, darkMode }) => {
   const handleClick = (e) => {
     let paisSeleccionado = e.target
       .closest(`[data-pais]`)
@@ -40,6 +45,7 @@ const Card = ({ dataPaises, setPais }) => {
     return (
       <Link to={"/detalle"}>
         <Item
+          darkMode={darkMode}
           key={pais.population}
           data-pais={pais.name.common}
           onClick={handleClick}

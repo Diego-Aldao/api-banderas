@@ -9,9 +9,14 @@ const InputBuscar = styled.input`
   box-shadow: 1px 2px 5px lightgray;
   padding: 20px;
   outline-color: gray;
+  background: ${(props) =>
+    props.darkMode
+      ? "var(--color-secundario-dark)"
+      : "var(--color-principal-light)"};
+  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
 `;
 
-const Searchbar = ({ setDataPaises, setIsLoading }) => {
+const Searchbar = ({ setDataPaises, setIsLoading, darkMode }) => {
   let valor = "";
 
   const fetchPais = (nombre) => {
@@ -37,6 +42,7 @@ const Searchbar = ({ setDataPaises, setIsLoading }) => {
       <InputBuscar
         placeholder="buscar un pais"
         onChange={handleChange}
+        darkMode={darkMode}
       ></InputBuscar>
       <button onClick={handleClick}>buscar pais</button>
     </>
