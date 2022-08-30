@@ -1,26 +1,41 @@
 import React from "react";
 import styled from "styled-components";
+import Select from "react-select";
 
-const ContenedorSelector = styled.div`
-  width: 150px;
-  padding: 0px 20px;
-  box-shadow: 1px 1px 15px #212e3714;
-  border-radius: 10px;
+const options = [
+  { value: "americas", label: "América" },
+  { value: "europe", label: "Europa" },
+  { value: "asia", label: "Asia" },
+  { value: "oceania", label: "Oceanía" },
+  { value: "africa", label: "Africa" },
+];
+
+const customStyles = {
+  option: (base, state, darkMode) => ({
+    ...base,
+    backgroundColor: state.isSelected ? "#000000" : "white",
+    color: state.isSelected ? "white" : "black",
+    "&:hover": {
+      backgroundColor: "var(--color-secundario-dark)",
+      color: "var(--color-principal-light)",
+    },
+  }),
+  singleValue: (base) => ({
+    ...base,
+    color: "gray",
+  }),
+
+  control: (base) => ({
+    ...base,
+    border: "none",
+    boxShadow: "1px 1px 15px #212e3714",
+    padding: "5px 10px",
+  }),
+};
+
+const ContenedorFilter = styled.div`
   margin-bottom: 50px;
-  background: ${(props) =>
-    props.darkMode
-      ? "var(--color-secundario-dark)"
-      : "var(--color-principal-light)"};
-  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
-`;
-
-const Selector = styled.select`
-  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
-  width: 100%;
-  height: 50px;
-  text-transform: capitalize;
-  border: none;
-  background: none;
+  height: auto;
 `;
 
 const Filter = ({ setDataPaises, setIsLoading, darkMode }) => {
@@ -34,23 +49,34 @@ const Filter = ({ setDataPaises, setIsLoading, darkMode }) => {
       });
   };
   const obtenerValue = (e) => {
-    const regionSeleccionada = e.target.value;
+    const regionSeleccionada = e.value;
     fetchRegiones(regionSeleccionada);
   };
 
   return (
-    <ContenedorSelector darkMode={darkMode}>
-      <Selector onChange={obtenerValue} darkMode={darkMode}>
-        <option disabled selected>
-          Region
-        </option>
-        <option value="americas">america</option>
-        <option value="europe">europa</option>
-        <option value="asia">asia</option>
-        <option value="africa">africa</option>
-        <option value="oceania">oceania</option>
-      </Selector>
-    </ContenedorSelector>
+    <ContenedorFilter>
+      <Select
+        options={options}
+        placeholder={"Seleccionar Region"}
+        darkMode={darkMode}
+        styles={customStyles}
+        onChange={obtenerValue}
+      />
+      {/* /*
+      <ContenedorSelector darkMode={darkMode}>
+        <Selector onChange={obtenerValue} darkMode={darkMode}>
+          <option disabled selected>
+            Region
+          </option>
+          <option value="americas">america</option>
+          <option value="europe">europa</option>
+          <option value="asia">asia</option>
+          <option value="africa">africa</option>
+          <option value="oceania">oceania</option>
+        </Selector>
+      </ContenedorSelector>
+      */}
+    </ContenedorFilter>
   );
 };
 
