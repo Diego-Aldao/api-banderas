@@ -10,7 +10,7 @@ const Contenido = styled.section`
   padding: 30px 20px;
 `;
 
-const Contenedor = () => {
+const Contenedor = ({ setPais }) => {
   let [dataPaises, setDataPaises] = useState([]);
   let [isLoading, setIsLoading] = useState(false);
 
@@ -32,7 +32,11 @@ const Contenedor = () => {
     <Contenido>
       <Searchbar setIsLoading={setIsLoading} setDataPaises={setDataPaises} />
       <Filter setIsLoading={setIsLoading} setDataPaises={setDataPaises} />
-      {isLoading ? <></> : <Card dataPaises={dataPaises}></Card>}
+      {isLoading ? (
+        <></>
+      ) : (
+        <Card dataPaises={dataPaises} setPais={setPais}></Card>
+      )}
     </Contenido>
   );
 };

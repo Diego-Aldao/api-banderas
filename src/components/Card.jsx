@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useEffect } from "react";
 
 const Item = styled.div`
   width: 100%;
@@ -26,20 +26,33 @@ const ContenidoItem = styled.div`
   }
 `;
 
-const Card = ({ dataPaises }) => {
+const Card = ({ dataPaises, setPais }) => {
+  const handleClick = (e) => {
+    let paisSeleccionado = e.target
+      .closest(`[data-pais]`)
+      .getAttribute("data-pais");
+    setPais(paisSeleccionado);
+  };
+
   const [data, setData] = useState(dataPaises);
 
-  const item = data.map((pais, i) => {
+  const item = data.map((pais) => {
     return (
-      <Item key={i}>
-        <img src={pais.flags.png} alt="" />
-        <ContenidoItem>
-          <h1>{pais.name.common}</h1>
-          <p>poblacion:{pais.population}</p>
-          <p>region:{pais.region}</p>
-          <p>capital:{pais.capital[0]}</p>
-        </ContenidoItem>
-      </Item>
+      <Link to={"/detalle"}>
+        <Item
+          key={pais.population}
+          data-pais={pais.name.common}
+          onClick={handleClick}
+        >
+          <img src={pais.flags.png} alt="" />
+          <ContenidoItem>
+            <h1>{pais.name.common}</h1>
+            <p>poblacion:{pais.population}</p>
+            <p>region:{pais.region}</p>
+            <p>capital:{pais.capital[0]}</p>
+          </ContenidoItem>
+        </Item>
+      </Link>
     );
   });
 
