@@ -8,6 +8,7 @@ const Item = styled.div`
   border-radius: 10px;
   max-width: 400px;
   margin: 0 auto;
+  max-height: 500px;
   background: ${(props) =>
     props.darkMode
       ? "var(--color-secundario-dark)"
