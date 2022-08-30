@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BsFillMoonStarsFill } from "react-icons/bs";
 
 const Navegacion = styled.div`
   background: ${(props) =>
@@ -32,7 +33,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           setDarkMode(!darkMode);
         }}
       >
-        i modo oscuro
+        <BsFillMoonStarsFill></BsFillMoonStarsFill> modo oscuro
       </span>
     </Navegacion>
   );
