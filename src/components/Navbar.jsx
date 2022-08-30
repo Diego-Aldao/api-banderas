@@ -18,9 +18,9 @@ const Navegacion = styled.div`
   font-size: 12px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-  box-shadow: 1px 1px 10px lightgray;
+  box-shadow: 1px 1px 15px #212e3714;
   & span:nth-child(1) {
-    font-weight: bold;
+    font-weight: 600;
   }
 `;
 

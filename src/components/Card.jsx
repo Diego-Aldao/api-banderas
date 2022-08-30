@@ -4,30 +4,41 @@ import styled from "styled-components";
 
 const Item = styled.div`
   width: 100%;
+  box-shadow: 1px 1px 15px #212e3714;
   border-radius: 10px;
-  box-shadow: 1px 1px 5px lightgray;
-  margin-bottom: 20px;
-  img {
-    width: 100%;
-    height: 150px;
-  }
+  max-width: 400px;
+  margin: 0 auto;
   background: ${(props) =>
     props.darkMode
       ? "var(--color-secundario-dark)"
       : "var(--color-principal-light)"};
   color: ${(props) => (props.darkMode ? "#fff" : "#000")};
+  img {
+    width: 100%;
+    height: 55vw;
+    max-height: 240px;
+  }
+
+  @media (min-width: 1024px) {
+    img {
+      height: 12vw;
+    }
+  }
 `;
 const ContenidoItem = styled.div`
   width: 100%;
   padding: 30px 20px;
   text-transform: capitalize;
   h1 {
-    font-weight: 700;
+    font-weight: 600;
     margin: 0 0 20px;
   }
   p {
     margin: 0 0 10px;
     font-weight: 500;
+  }
+  span {
+    font-weight: 300;
   }
 `;
 
@@ -43,22 +54,28 @@ const Card = ({ dataPaises, setPais, darkMode }) => {
 
   const item = data.map((pais) => {
     return (
-      <Link to={"/detalle"}>
-        <Item
-          darkMode={darkMode}
-          key={pais.population}
-          data-pais={pais.name.common}
-          onClick={handleClick}
-        >
+      <Item
+        darkMode={darkMode}
+        key={pais.population}
+        data-pais={pais.name.common}
+        onClick={handleClick}
+      >
+        <Link to={"/detalle"}>
           <img src={pais.flags.png} alt="" />
           <ContenidoItem>
             <h1>{pais.name.common}</h1>
-            <p>poblacion:{pais.population}</p>
-            <p>region:{pais.region}</p>
-            <p>capital:{pais.capital[0]}</p>
+            <p>
+              población: <span>{pais.population}</span>
+            </p>
+            <p>
+              región: <span>{pais.region}</span>
+            </p>
+            <p>
+              capital: <span>{pais.capital[0]}</span>
+            </p>
           </ContenidoItem>
-        </Item>
-      </Link>
+        </Link>
+      </Item>
     );
   });
 

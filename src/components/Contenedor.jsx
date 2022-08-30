@@ -5,14 +5,19 @@ import Searchbar from "./Searchbar";
 import { useState, useEffect } from "react";
 import Card from "./Card";
 
-const Contenido = styled.section`
+const ContenedorCards = styled.section`
+  display: grid;
+  grid-template-columns: 1fr;
   width: 100%;
-  padding: 30px 20px;
-  background: ${(props) =>
-    props.darkMode
-      ? "var(--color-principal-dark)"
-      : "var(--color-principal-light)"};
-  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
+  min-height: 100vh;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
 `;
 
 const Contenedor = ({ setPais, darkMode }) => {
@@ -34,7 +39,7 @@ const Contenedor = ({ setPais, darkMode }) => {
   };
 
   return (
-    <Contenido darkMode={darkMode}>
+    <>
       <Searchbar
         setIsLoading={setIsLoading}
         setDataPaises={setDataPaises}
@@ -45,16 +50,18 @@ const Contenedor = ({ setPais, darkMode }) => {
         setDataPaises={setDataPaises}
         darkMode={darkMode}
       />
-      {isLoading ? (
-        <></>
-      ) : (
-        <Card
-          dataPaises={dataPaises}
-          setPais={setPais}
-          darkMode={darkMode}
-        ></Card>
-      )}
-    </Contenido>
+      <ContenedorCards darkMode={darkMode}>
+        {isLoading ? (
+          <></>
+        ) : (
+          <Card
+            dataPaises={dataPaises}
+            setPais={setPais}
+            darkMode={darkMode}
+          ></Card>
+        )}
+      </ContenedorCards>
+    </>
   );
 };
 

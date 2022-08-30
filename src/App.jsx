@@ -4,12 +4,21 @@ import Contenedor from "./components/Contenedor";
 import Detalle from "./components/Detalle";
 import Layout from "./layouts/Layout";
 import { useState } from "react";
+import styled from "styled-components";
+
+const ContenedorApp = styled.div`
+  background: ${(props) =>
+    props.darkMode
+      ? "var(--color-principal-dark)"
+      : "var(--color-principal-light)"};
+  color: ${(props) => (props.darkMode ? "#fff" : "#000")};
+`;
 
 function App() {
   const [pais, setPais] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   return (
-    <>
+    <ContenedorApp darkMode={darkMode}>
       <Routes>
         <Route
           path="/"
@@ -28,7 +37,7 @@ function App() {
           }
         />
       </Routes>
-    </>
+    </ContenedorApp>
   );
 }
 
