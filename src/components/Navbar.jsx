@@ -22,6 +22,9 @@ const Navegacion = styled.div`
   & span:nth-child(1) {
     font-weight: 600;
   }
+  span:last-child {
+    cursor: pointer;
+  }
 `;
 
 const Navbar = ({ darkMode, setDarkMode }) => {

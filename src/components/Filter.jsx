@@ -5,7 +5,6 @@ import Select from "react-select";
 const options = [
   { value: "americas", label: "América" },
   { value: "europe", label: "Europa" },
-  { value: "asia", label: "Asia" },
   { value: "oceania", label: "Oceanía" },
   { value: "africa", label: "Africa" },
 ];
@@ -34,8 +33,11 @@ const customStyles = {
 };
 
 const ContenedorFilter = styled.div`
-  margin-bottom: 50px;
+  margin-bottom: 110px;
   height: auto;
+  div {
+    cursor: pointer;
+  }
 `;
 
 const Filter = ({ setDataPaises, setIsLoading, darkMode }) => {
@@ -46,9 +48,11 @@ const Filter = ({ setDataPaises, setIsLoading, darkMode }) => {
       .then((region) => {
         setDataPaises(region.slice(0, 20));
         setIsLoading(false);
-      });
+      })
+      .catch((err) => console.log(err));
   };
   const obtenerValue = (e) => {
+    console.log(e.value);
     const regionSeleccionada = e.value;
     fetchRegiones(regionSeleccionada);
   };
@@ -62,20 +66,6 @@ const Filter = ({ setDataPaises, setIsLoading, darkMode }) => {
         styles={customStyles}
         onChange={obtenerValue}
       />
-      {/* /*
-      <ContenedorSelector darkMode={darkMode}>
-        <Selector onChange={obtenerValue} darkMode={darkMode}>
-          <option disabled selected>
-            Region
-          </option>
-          <option value="americas">america</option>
-          <option value="europe">europa</option>
-          <option value="asia">asia</option>
-          <option value="africa">africa</option>
-          <option value="oceania">oceania</option>
-        </Selector>
-      </ContenedorSelector>
-      */}
     </ContenedorFilter>
   );
 };

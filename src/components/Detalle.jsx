@@ -128,7 +128,7 @@ const Detalle = ({ pais, darkMode }) => {
       });
   };
 
-  const item = paisActual.map((valor, i) => {
+  const item = paisActual?.map((valor, i) => {
     return (
       <Card key={i}>
         <img src={valor.flags.png} alt="" />
@@ -167,7 +167,7 @@ const Detalle = ({ pais, darkMode }) => {
           </Info>
           <Fronteras>
             <p>paises limítrofes:</p>
-            {valor.borders.map((border, i) => {
+            {valor?.borders?.map((border, i) => {
               return <ItemFrontera key={i}>{border}</ItemFrontera>;
             })}
           </Fronteras>

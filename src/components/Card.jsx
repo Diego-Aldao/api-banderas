@@ -53,7 +53,7 @@ const Card = ({ dataPaises, setPais, darkMode }) => {
 
   const [data, setData] = useState(dataPaises);
 
-  const item = data.map((pais) => {
+  const item = data?.map((pais) => {
     return (
       <Item
         darkMode={darkMode}

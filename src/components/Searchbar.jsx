@@ -22,6 +22,13 @@ const ContenedorInput = styled.div`
     border: none;
     font-size: 20px;
     color: ${(props) => (props.darkMode ? "#fff" : "#000")};
+    cursor: pointer;
+    border-radius: 15px 0px 0px 15px;
+    transition: all 0.1s ease-in-out;
+  }
+  button:hover {
+    background: ${(props) => (props.darkMode ? "#fff" : "#000")};
+    color: ${(props) => (props.darkMode ? "#000" : "#fff")};
   }
 `;
 
